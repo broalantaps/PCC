@@ -61,3 +61,4 @@ deepspeed --include node-0:0,1,2,3 --master_port $MASTER_PORT train.py \
     --save_strategy steps \
     --run_name ${PROJECT_NAME} \
     --skip_memory_metrics False
+ 
