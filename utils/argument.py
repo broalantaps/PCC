@@ -20,10 +20,11 @@ class TrainArguments(TrainingArguments):
         metadata={"help": "stage of the training."}
     )
     compress_model: str = field(
+        default=None,
         metadata={"help": "path to the embedding model"},
     )
     compressor_type: str = field(
-        default="large",
+        default="lite",
         metadata={"help": "compressor type: lite or large"}
     )
     adapter_model: str = field(
@@ -35,7 +36,7 @@ class TrainArguments(TrainingArguments):
         metadata={"help":"path to the converter model"}
     )
     
-    llm_model: str = field(
+    decoder_model: str = field(
         default="meta-llama/Llama-2-7b-chat-hf",
         metadata={"help": "path to the language model"},
     )
