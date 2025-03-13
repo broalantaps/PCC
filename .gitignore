@@ -1,1 +1,3 @@
- 
+wandb
+train/*
+*/__pycache__
