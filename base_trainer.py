@@ -269,11 +269,17 @@ class BaseTrainer(Trainer):
         # Save tokenizers
         llm_save_dir = os.path.join(output_dir, "llm")
         os.makedirs(llm_save_dir, exist_ok=True)
+        
+        self.model.decoder.model.save_pretrained(llm_save_dir)
         self.model.decoder.tokenizer.save_pretrained(llm_save_dir)
         
         if self.model.compressor.tokenizer is not None:
             self.model.compressor.tokenizer.save_pretrained(output_dir)
         
+        torch.save(
+            self.model.converter.state_dict(),
+            os.path.join(output_dir, "memory_converter.bin")
+        )
         # Optionally push to HuggingFace if token is available
         hf_token = os.environ.get('HF_TOKEN', '')
         if hf_token:

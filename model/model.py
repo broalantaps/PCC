@@ -404,7 +404,7 @@ class PCC(nn.Module):
             model_name_or_path=args.decoder_model,
             stage=args.stage,
             device=args.device,
-            max_length=args.max_length,
+            max_length=2048,
             is_train=False,
             embed_len=args.embed_len
         )
@@ -423,7 +423,7 @@ class PCC(nn.Module):
             else:
                 converter_model_path = hf_hub_download(
                     repo_id=args.converter_model,
-                    filename='converter.bin'
+                    filename='memory_converter.bin'
                 )
                 print(f"converter.bin saved to {converter_model_path}")
                 self.converter.load_state_dict(torch.load(converter_model_path))
